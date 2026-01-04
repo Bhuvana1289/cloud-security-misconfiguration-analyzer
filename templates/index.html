@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cloud Security Analyzer</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+    🔐 Cloud Security Misconfiguration Analyzer
+</div>
+
+<div class="container">
+    <div class="card">
+        <h2>Upload Cloud Configuration File</h2>
+        <p>Analyze cloud security risks & misconfigurations</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Analyze Security</button>
+        </form>
+    </div>
+
+    {% if issues %}
+    <div class="results">
+        <h2>🚨 Security Issues Detected</h2>
+
+        <ul class="issues">
+            {% for issue in issues %}
+            <li>⚠ {{ issue }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>✅ Recommended Fixes</h2>
+        <ul class="fixes">
+            {% for rec in recommendations %}
+            <li>✔ {{ rec }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+<footer>
+     | Cloud Security Analyzer |
+</footer>
+
+</body>
+</html>
